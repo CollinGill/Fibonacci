@@ -1,12 +1,11 @@
-SRC = main.asm
-OBJ = main.o
+OBJ = main.o util.o
 TARGET = fibonacci 
 
 $(TARGET) : $(OBJ)
 	ld $(OBJ) -o $(TARGET)
 
-$(OBJ) : $(SRC)
-	nasm -felf64 $(SRC)
+%.o : %.asm
+	nasm -felf64 $< -o $@
 
 clean:
 	rm *.o $(TARGET)
